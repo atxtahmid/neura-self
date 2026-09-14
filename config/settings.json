@@ -1,131 +1,93 @@
 {
-    "core": {
-        "monitor_bot_id": "408785106942164992",
-        "prefix": "owo "
-    },
+    "setprefix": "owo ",
+    "useSlashCommands": false,
+    "claimMail": false,
+    "autoDaily": true,
+    "cashCheck": true,
     "commands": {
-        "owo": {
-            "enabled": true,
-            "cooldown": [
-                10,
-                13
-            ]
-        },
         "hunt": {
             "enabled": true,
-            "use_shortform": true,
-            "cooldown": [
-                15,
-                18
-            ]
+            "cooldown": [15, 17],
+            "useShortForm": false
         },
         "battle": {
             "enabled": true,
-            "use_shortform": true,
-            "cooldown": [
-                15,
-                18
-            ]
-        },
-        "curse": {
-            "enabled": false,
-            "cooldown": [
-                310,
-                400
-            ],
-            "ping": true,
-            "targets": [
-                "put-curse-target-id-here"
-            ]
+            "cooldown": [15, 17],
+            "useShortForm": false,
+            "showStreakInConsole": false,
+            "notifyStreakLoss": false
         },
         "pray": {
             "enabled": true,
-            "cooldown": [
-                310,
-                400
-            ],
-            "ping": true,
-            "targets": ""
+            "cooldown": [310, 400],
+            "userid": [],
+            "pingUser": false,
+            "customChannel": {
+                "enabled": false,
+                "channelId": 0
+            },
+            "count": false
+        },
+        "curse": {
+            "enabled": true,
+            "cooldown": [320, 410],
+            "userid": [],
+            "pingUser": false,
+            "customChannel": {
+                "enabled": false,
+                "channelId": 0
+            },
+            "count": false
+        },
+        "lottery": {
+            "enabled": false,
+            "amount": 1
+        },
+        "lvlGrind": {
+            "enabled": false,
+            "cooldown": [10, 15],
+            "useQuoteInstead": false,
+            "minLengthForRandomString": 5,
+            "maxLengthForRandomString": 20
         },
         "cookie": {
             "enabled": false,
-            "id": "cookie-target-id"
+            "userid": "408785106942164992",
+            "pingUser": false
         },
-        "daily": {
-            "enabled": true
+        "shop": {
+            "enabled": true,
+            "itemsToBuy": {
+                "commonRing": true,
+                "uncommonRing": false,
+                "rareRing": false,
+                "epicRing": false,
+                "mythicalRing": false,
+                "legendaryRing": false,
+                "fabledRing": false
+            },
+            "cooldown": [360, 1600]
         },
-        "coinflip": {
-            "enabled": false,
-            "use_shortform": true,
-            "amount": 400,
-            "side": "h"
+        "owo": {
+            "enabled": true,
+            "prioritise": false,
+            "cooldown": [19, 31]
         },
-        "slots": {
-            "enabled": false,
-            "use_shortform": true,
-            "amount": 1
-        },
-        "blackjack": {
-            "enabled": false,
-            "use_shortform": true,
-            "amount": 100
-        },
-        "sell_sac": {
-            "sell": {
+        "autoHuntBot": {
+            "enabled": true,
+            "cashToSpend": 30000,
+            "upgrader": {
                 "enabled": false,
-                "interval_min": 20,
-                "min_cash_trigger": 1000,
-                "type": "all"
-            },
-            "sacrifice": {
-                "enabled": false,
-                "interval_min": 60,
-                "type": "all",
-                "use_shortform": true
-            }
-        },
-        "gems": {
-            "enabled": true,
-            "interval": [
-                15,
-                20
-            ],
-            "order": {
-                "lowestToHighest": false
-            },
-            "tiers": {
-                "common": true,
-                "epic": true,
-                "fabled": false,
-                "legendary": false,
-                "mythical": true,
-                "rare": true,
-                "uncommon": true
-            },
-            "types": {
-                "empoweredGem": true,
-                "huntGem": true,
-                "luckyGem": true,
-                "specialGem": false
-            },
-            "use_gems_set": false
-        },
-        "giveaway": {
-            "enabled": true,
-            "channels": [
-                "1099453684691243098",
-                "1168797748343099444",
-                "1168797827464429618"
-            ],
-            "cooldown": 2
-        },
-        "huntbot": {
-            "enabled": true,
-            "use_shortform": true,
-            "cash_to_spend": 3000,
-            "upgrade": {
-                "enabled": true,
-                "priorities": {
+                "traits": {
+                    "efficiency": true,
+                    "duration": true,
+                    "cost": true,
+                    "gain": true,
+                    "exp": true,
+                    "radar": true
+                },
+                "sleeptime": [10, 15],
+                "weights": {
                     "efficiency": 4,
                     "duration": 2,
                     "cost": 5,
@@ -135,134 +97,200 @@
                 }
             }
         },
-        "open": {
+        "pup": {
+            "enabled": true,
+            "cooldown": [60, 70]
+        },
+        "piku": {
+            "enabled": true,
+            "cooldown": [65, 75]
+        },
+        "army": {
+            "enabled": true,
+            "cooldown": [67, 74]
+        }
+    },
+    "animal": {
+        "sell": {
             "enabled": false,
-            "crate": {
-                "enabled": false,
-                "type": "all"
-            },
-            "lootbox": {
-                "enabled": false,
-                "type": "all"
+            "rarity": {
+                "common": true,
+                "uncommon": true,
+                "rare": true,
+                "epic": true,
+                "special": false,
+                "mythical": false,
+                "gem": false,
+                "legendary": false,
+                "fabled": false,
+                "hidden": false,
+                "distorted": false
             }
         },
-        "quest": {
-            "enabled": true,
-            "auto_solve": true,
-            "use_alt_account": true,
-            "interval_h": 6
+        "sac": {
+            "enabled": false,
+            "rarity": {
+                "common": true,
+                "uncommon": true,
+                "rare": true,
+                "epic": true,
+                "special": false,
+                "mythical": false,
+                "gem": false,
+                "legendary": false,
+                "fabled": false,
+                "hidden": false,
+                "distorted": false
+            }
         },
-        "rpp": {
+        "cooldown": [30, 40]
+    },
+    "gamble": {
+        "allottedAmount": 10000,
+        "goalSystem": {
             "enabled": true,
-            "active_commands": [
-                "run",
-                "pup",
-                "piku"
-            ],
-            "interval_s": 60
+            "amount": 30000
         },
-        "shop": {
-            "enabled": true,
-            "itemsToBuy": 1,
-            "cooldown": 3600
+        "coinflip": {
+            "enabled": false,
+            "startValue": 200,
+            "multiplierOnLose": 2,
+            "cooldown": [16, 18],
+            "options": {
+                "heads": true,
+                "tails": false
+            }
+        },
+        "slots": {
+            "enabled": false,
+            "startValue": 200,
+            "multiplierOnLose": 2,
+            "cooldown": [16, 18]
+        },
+        "blackjack": {
+            "enabled": false,
+            "startValue": 200,
+            "multiplierOnLose": 2,
+            "cooldown": [16, 18]
         }
     },
-    "stealth": {
-        "typing_enabled": true,
-        "speed_preset": "slow",
-        "speed_custom": {
-            "enabled": true,
-            "reaction_min": 0.5,
-            "reaction_max": 1,
-            "key_delay_min": 0.3,
-            "key_delay_max": 0.9,
-            "mistake_rate": 100,
-            "enter_delay_min": 0.1,
-            "enter_delay_max": 0.4
-        },
-        "human_break": {
-            "enabled": true,
-            "duration_min": 14,
-            "interval_min": 45
-        }
-    },
-    "reactionBot": {
+    "bossBattle": {
         "enabled": false,
-        "cooldown": [
-            0.5,
-            1
+        "joinChancePercent": 25,
+        "joinAllGuilds": true,
+        "guildJoinRules": {
+            "ignoreGuildIds": [],
+            "onlyJoinGuildIds": []
+        }
+    },
+    "giveawayJoiner": {
+        "enabled": true,
+        "channelsToJoin": [
+            "1099453684691243098",
+            "1168797748343099444",
+            "1168797827464429618"
         ],
-        "hunt_and_battle": false,
-        "owo": false,
-        "pray_and_curse": false
+        "cooldown": [40, 100],
+        "messageRangeToCheck": 6
+    },
+    "sleep": {
+        "enabled": false
+    },
+    "misspell": {
+        "enabled": false,
+        "frequencyPercentage": 29,
+        "baseDelay": [0.03, 0.07],
+        "errorRectificationTimePerLetter": [0.04, 0.09]
+    },
+    "defaultCooldowns": {
+        "longCooldown": [400, 600],
+        "moderateCooldown": [70, 200],
+        "shortCooldown": [10, 60],
+        "briefCooldown": [0.7, 2.7],
+        "captchaRestart": [3.7, 5.6],
+        "commandHandler": {
+            "betweenCommands": [1.7, 2.7],
+            "beforeReaddingToQueue": 7
+        },
+        "reactionBot": {
+            "huntAndBattle": false,
+            "owo": false,
+            "prayAndCurse": false,
+            "cooldown": [0.5, 1]
+        }
+    },
+    "autoQuest": {
+        "enabled": false,
+        "helpChannel": {
+            "postInHelpChannel": false,
+            "channelId": 1513350205263839307
+        },
+        "enableCommandsToCompleteQuest": true,
+        "helpOthers": true,
+        "checkCooldown": [10, 30]
+    },
+    "autoUse": {
+        "gems": {
+            "enabled": true,
+            "order": {
+                "lowestToHighest": true
+            },
+            "tiers": {
+                "common": true,
+                "uncommon": false,
+                "rare": false,
+                "epic": false,
+                "mythical": false,
+                "legendary": false,
+                "fabled": false
+            },
+            "gemsToUse": {
+                "huntGem": true,
+                "empoweredGem": false,
+                "luckyGem": true,
+                "specialGem": false
+            },
+            "dynamicSpecialGemUsage": true,
+            "disableHuntIfNoGems": false
+        },
+        "autoLootbox": false,
+        "autoCrate": false
+    },
+    "customCommands": {
+        "enabled": false,
+        "commands": [
+            {
+                "enabled": true,
+                "command": "custom command 1",
+                "cooldown": 2
+            },
+            {
+                "enabled": true,
+                "command": "custom command 2",
+                "cooldown": 5
+            },
+            {
+                "enabled": true,
+                "command": "custom command 3, add more as needed. keep an eye on , as json's don't end with ','!",
+                "cooldown": 5
+            }
+        ]
     },
     "security": {
         "enabled": true,
         "captcha_solver": {
-            "enabled": false,
-            "service": "yescaptcha",
+            "enabled": true,
+            "service": "browserless",
+            "browserless_api_key": "",
             "yescaptcha_api_key": "",
             "nopecha_api_key": "",
-            "anticaptcha_api_key": ""
+            "anticaptcha_api_key": "",
+            "captchaly_api_key": ""
         },
-        "open_captcha_url_on_pc": true,
-        "open_captcha_url_on_mobile": false,
         "notifications": {
-            "desktop": {
-                "enabled": true,
-                "sound": true,
-                "title": "Neura Security Alert"
-            },
-            "mobile": {
-                "enabled": true,
-                "toast": {
-                    "enabled": true,
-                    "bg_color": "#000000",
-                    "position": "middle",
-                    "text_color": "#ffffff"
-                },
-                "tts": {
-                    "enabled": false
-                },
-                "vibrate": {
-                    "enabled": true,
-                    "time": 2
-                }
-            }
+            "enabled": false
         },
-        "webhook": {
-            "enabled": true,
-            "url": "Your-own-discord-webhook-put-here-important-for-securtiy-alert-and-must-on-hosting"
-        }
-    },
-    "boss": {
-        "enabled": true,
-        "ignore_guilds": [],
-        "join_all_guilds": false,
-        "join_chance": 100
-    },
-    "level_grind": {
-        "enabled": false,
-        "cooldown": [
-            60,
-            90
-        ],
-        "max_length": 100,
-        "min_length": 10
-    },
-    "utilities": {
-        "autochannel": {
-            "enabled": true,
-            "cooldown": [
-                500,
-                650
-            ]
-        }
-    },
-    "gambling": {
-        "min_balance": 40000,
-        "max_balance": 1000000,
-        "bet_strategy": "martingale",
-        "max_bet": 10000
+        "open_captcha_url_on_pc": false,
+        "open_captcha_url_on_mobile": false
     }
-}
+        }
