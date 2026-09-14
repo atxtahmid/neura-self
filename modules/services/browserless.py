@@ -43,7 +43,7 @@ class BrowserlessService:
             "token": self.api_key,
             "launch": launch_opts,
             "solveCaptchas": "true",
-            "timeout": "180000",
+            "timeout": "120000",
         }
 
         ws_url = self.ws_endpoint + "?" + urlencode(params)
