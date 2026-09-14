@@ -31,6 +31,10 @@ from modules.services.yescaptcha import YesCaptchaService
 from modules.services.nopecha import NopeCaptchaService
 from modules.services.anticaptcha import AntiCaptchaService
 from modules.services.captchaly import CaptchalyService
+from modules.services.browserless import BrowserlessService
+
+import core.state as state
+
 
 class WebSolver:
     _manual_lock = asyncio.Lock()
@@ -51,7 +55,10 @@ class WebSolver:
         self.enabled = cfg.get('enabled', True)
         self.browser_cfg = cfg.get('browser_config', {})
 
-        if self.active_service_name == 'nopecha':
+        if self.active_service_name == 'browserless':
+            self.active_key = cfg.get('browserless_api_key') or os.getenv("BROWSERLESS_TOKEN", "")
+            self.service = BrowserlessService(self.bot, self.active_key, self.site_key)
+        elif self.active_service_name == 'nopecha':
             self.active_key = cfg.get('nopecha_api_key', self.api_key)
             self.service = NopeCaptchaService(self.bot, self.active_key, self.site_key)
         elif self.active_service_name == 'anticaptcha':
@@ -74,6 +81,18 @@ class WebSolver:
 
     async def auto_verify(self, tries=3):
         self._reload_service()
+
+        if self.active_service_name == 'browserless':
+            self.bot.log("SYS", "Browserless: Starting full captcha flow...")
+            success = await self.service.solve_full_flow(self.bot.token, retries=tries)
+            if success:
+                self.mark_verification_done(str(self.bot.user.id))
+                self.bot.log("SUCCESS", "Browserless: Captcha solved and verified!")
+                return True
+            else:
+                self.bot.log("ERROR", "Browserless: Full flow failed.")
+                return False
+
         if not self.active_key and self.active_service_name != 'nopecha':
             self.bot.log("ERROR", f"{self.active_service_name.capitalize()} API key missing in settings.")
             return False
@@ -303,6 +322,7 @@ class WebSolver:
                 bot.log("ERROR", f"Browser solver start failed: {e}")
                 return False
 
+
 def _open_url(url, bot):
     if getattr(bot, 'is_mobile', False):
         try:
@@ -355,7 +375,6 @@ def _open_url(url, bot):
     if not opened:
         bot.log("WARN", "All browser opening methods failed. Please use dashboard to solve captcha manually.")
 
-import core.state as state
 
 def setup_web_solver(bot):
     return WebSolver(bot)
