@@ -867,7 +867,7 @@ def register_captcha_challenge(account_id, challenge_data):
 def clear_captcha_challenge(account_id):
     if account_id in _pending_captchas:
         _pending_captchas.pop(account_id, None)
-        state.log_command("SEC", f"Captcha challenge cleared for account {account_id}", "info")MAX_ATTEMPTS = 5
+        state.log_command("SEC", f"Captcha challenge cleared for account {account_id}", "info")
 
 def load_auth_config():
     env_username = os.getenv("DASHBOARD_USERNAME")
