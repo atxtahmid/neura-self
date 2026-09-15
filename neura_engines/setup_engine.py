@@ -100,65 +100,8 @@ class NeuraSetupEngine:
                 ver = result.stdout.strip().split()[-1]
                 self._console_log("ok", f"git {ver} found")
                 return True
-        self._console_log("warn", "git not found")
-        return self.install_git()
-
-    def install_git(self):
-        mobile = is_termux()
-        try:
-            if mobile:
-                self._console_log("info", "installing git via pkg...")
-                subprocess.run(["pkg", "update", "-y"], stdout=None, stderr=None)
-                subprocess.run(["pkg", "install", "git", "-y"], stdout=None, stderr=None, check=True)
-                self._console_log("ok", "git installed via pkg")
-                return True
-            if sys.platform.startswith("win"):
-                if shutil.which("choco"):
-                    subprocess.run(["choco", "install", "git", "-y"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via chocolatey")
-                    return True
-                elif shutil.which("winget"):
-                    subprocess.run(["winget", "install", "Git.Git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via winget")
-                    return True
-                else:
-                    self._console_log("error", "no package manager found (choco/winget).")
-                    console.print("\n[bold]Please install Git manually from:[/bold] https://git-scm.com/download/win")
-                    return False
-            else:
-                if shutil.which("apt"):
-                    subprocess.run(["sudo", "apt", "update"], stdout=None, stderr=None)
-                    subprocess.run(["sudo", "apt", "install", "-y", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via apt")
-                    return True
-                elif shutil.which("brew"):
-                    subprocess.run(["brew", "install", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via brew")
-                    return True
-                elif shutil.which("dnf"):
-                    subprocess.run(["sudo", "dnf", "install", "-y", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via dnf")
-                    return True
-                elif shutil.which("yum"):
-                    subprocess.run(["sudo", "yum", "install", "-y", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via yum")
-                    return True
-                elif shutil.which("pacman"):
-                    subprocess.run(["sudo", "pacman", "-Sy", "--noconfirm", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via pacman")
-                    return True
-                elif shutil.which("apk"):
-                    subprocess.run(["sudo", "apk", "add", "git"], stdout=None, stderr=None, check=True)
-                    self._console_log("ok", "git installed via apk")
-                    return True
-                else:
-                    self._console_log("error", "unsupported package manager.")
-                    console.print("\n[bold]Please install Git using your system's package manager[/bold] (e.g., 'sudo apt install git' or 'brew install git')")
-                    return False
-        except Exception as e:
-            self._console_log("error", f"git installation failed: {e}")
-            console.print("\n[bold]Please install Git manually:[/bold] https://git-scm.com/downloads")
-            return False
+        self._console_log("warn", "git not found – skipping (not required in this environment)")
+        return True
 
     def ensure_directories(self):
         for path in (state.CONFIG_DIR, state.DATA_DIR):
@@ -256,7 +199,6 @@ class NeuraSetupEngine:
             "numpy": "numpy",
             "pillow": "PIL",
             "onnxruntime": "onnxruntime",
-            "nopecha": "nopecha",
         }
         key = name.lower().replace("-", "_")
         if key in ("discord_py_self", "discord.py-self"):
@@ -369,7 +311,7 @@ class NeuraSetupEngine:
         return True
 
     def verify_imports(self):
-        modules = ["discord", "flask", "rich", "aiohttp", "aiohttp_socks", "requests", "numpy", "PIL", "nopecha"]
+        modules = ["discord", "flask", "rich", "aiohttp", "aiohttp_socks", "requests", "numpy", "PIL"]
         missing = []
         for mod in modules:
             try:
@@ -389,9 +331,7 @@ class NeuraSetupEngine:
         self._console_log("info", "running full setup...")
         if not self.check_python():
             return False
-        if not self.check_git():
-            self._console_log("error", "git is required – please install it manually if auto-install failed")
-            return False
+        self.check_git()
         self.ensure_directories()
         self.ensure_config_files()
         if force_bootstrap or not self.environment_healthy():
