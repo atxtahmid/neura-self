@@ -6,44 +6,27 @@
     "commands": {
         "owo": {
             "enabled": true,
-            "cooldown": [
-                10,
-                13
-            ]
+            "cooldown": [10, 13]
         },
         "hunt": {
             "enabled": true,
             "use_shortform": true,
-            "cooldown": [
-                15,
-                18
-            ]
+            "cooldown": [15, 18]
         },
         "battle": {
             "enabled": true,
             "use_shortform": true,
-            "cooldown": [
-                15,
-                18
-            ]
+            "cooldown": [15, 18]
         },
         "curse": {
             "enabled": false,
-            "cooldown": [
-                310,
-                400
-            ],
+            "cooldown": [310, 400],
             "ping": true,
-            "targets": [
-                "put-curse-target-id-here"
-            ]
+            "targets": ["put-curse-target-id-here"]
         },
         "pray": {
             "enabled": true,
-            "cooldown": [
-                310,
-                400
-            ],
+            "cooldown": [310, 400],
             "ping": true,
             "targets": ""
         },
@@ -86,10 +69,7 @@
         },
         "gems": {
             "enabled": true,
-            "interval": [
-                15,
-                20
-            ],
+            "interval": [15, 20],
             "order": {
                 "lowestToHighest": false
             },
@@ -122,7 +102,7 @@
         "huntbot": {
             "enabled": true,
             "use_shortform": true,
-            "cash_to_spend": 3000,
+            "cash_to_spend": 30000,
             "upgrade": {
                 "enabled": true,
                 "priorities": {
@@ -154,15 +134,11 @@
         },
         "rpp": {
             "enabled": true,
-            "active_commands": [
-                "run",
-                "pup",
-                "piku"
-            ],
+            "active_commands": ["run", "pup", "piku"],
             "interval_s": 60
         },
         "shop": {
-            "enabled": true,
+            "enabled": false,
             "itemsToBuy": 1,
             "cooldown": 3600
         }
@@ -176,7 +152,7 @@
             "reaction_max": 1,
             "key_delay_min": 0.3,
             "key_delay_max": 0.9,
-            "mistake_rate": 100,
+            "mistake_rate": 4,
             "enter_delay_min": 0.1,
             "enter_delay_max": 0.4
         },
@@ -188,10 +164,7 @@
     },
     "reactionBot": {
         "enabled": false,
-        "cooldown": [
-            0.5,
-            1
-        ],
+        "cooldown": [0.5, 1],
         "hunt_and_battle": false,
         "owo": false,
         "pray_and_curse": false
@@ -199,24 +172,22 @@
     "security": {
         "enabled": true,
         "captcha_solver": {
-            "enabled": false,
-            "service": "yescaptcha",
-            "yescaptcha_api_key": "",
-            "nopecha_api_key": "",
-            "anticaptcha_api_key": ""
+            "enabled": true,
+            "service": "browseruse",
+            "browseruse_api_key": ""
         },
-        "open_captcha_url_on_pc": true,
+        "open_captcha_url_on_pc": false,
         "open_captcha_url_on_mobile": false,
         "notifications": {
             "desktop": {
-                "enabled": true,
-                "sound": true,
+                "enabled": false,
+                "sound": false,
                 "title": "Neura Security Alert"
             },
             "mobile": {
-                "enabled": true,
+                "enabled": false,
                 "toast": {
-                    "enabled": true,
+                    "enabled": false,
                     "bg_color": "#000000",
                     "position": "middle",
                     "text_color": "#ffffff"
@@ -225,14 +196,14 @@
                     "enabled": false
                 },
                 "vibrate": {
-                    "enabled": true,
+                    "enabled": false,
                     "time": 2
                 }
             }
         },
         "webhook": {
-            "enabled": true,
-            "url": "Your-own-discord-webhook-put-here-important-for-securtiy-alert-and-must-on-hosting"
+            "enabled": false,
+            "url": ""
         }
     },
     "boss": {
@@ -243,20 +214,14 @@
     },
     "level_grind": {
         "enabled": false,
-        "cooldown": [
-            60,
-            90
-        ],
+        "cooldown": [60, 90],
         "max_length": 100,
         "min_length": 10
     },
     "utilities": {
         "autochannel": {
             "enabled": true,
-            "cooldown": [
-                500,
-                650
-            ]
+            "cooldown": [500, 650]
         }
     },
     "gambling": {

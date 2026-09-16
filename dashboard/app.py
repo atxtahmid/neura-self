@@ -59,21 +59,17 @@ BLOCK_DURATION = 300
 MAX_ATTEMPTS = 5
 
 def load_auth_config():
-    # --- FIX: READ FROM ENVIRONMENT VARIABLES FIRST ---
     env_username = os.getenv("DASHBOARD_USERNAME")
     env_password = os.getenv("DASHBOARD_SECRET")
     
     if env_username and env_password:
-        # Log success to the console (will show in Railway logs)
         print(f"[Dashboard] Authentication loaded from Environment Variables. User: {env_username}")
         return {
             "username": env_username,
             "password": env_password,
-            "secret_key": secrets.token_hex(32) # Generate a secure random secret key
+            "secret_key": secrets.token_hex(32)
         }
-    # ---------------------------------------------------
 
-    # Fallback to reading the local auth.json file if env vars aren't set
     if os.path.exists(AUTH_FILE):
         try:
             with open(AUTH_FILE, 'r') as f:
@@ -674,45 +670,21 @@ def captcha_balance():
     account_id = request.args.get('id')
     bot = get_bot(account_id)
     if not bot:
-        return jsonify({'balance': None, 'service': 'unknown', 'error': 'Bot not found'})
-    
+        return jsonify({'balance': None, 'service': 'browseruse', 'error': 'Bot not found'})
+
     cfg = bot.config.get('security', {}).get('captcha_solver', {})
-    service = cfg.get('service', 'yescaptcha')
-    api_key = ''
-    
+    service = 'browseruse'
+
+    api_key = cfg.get('browseruse_api_key', '') or os.getenv('BROWSER_USE_API_KEY', '')
+
     if request.method == 'POST':
         data = request.json or {}
-        if 'service' in data:
-            service = data['service']
         if 'api_key' in data:
             api_key = data['api_key']
-            
-    if not api_key:
-        if service == 'nopecha':
-            api_key = cfg.get('nopecha_api_key', cfg.get('api_key', ''))
-        elif service == 'anticaptcha':
-            api_key = cfg.get('anticaptcha_api_key', cfg.get('api_key', ''))
-        elif service == 'captchaly':
-            api_key = cfg.get('captchaly_api_key', cfg.get('api_key', ''))
-        else:
-            api_key = cfg.get('yescaptcha_api_key', cfg.get('api_key', ''))
-
-
-    temp_solver = None
-    if service == 'nopecha':
-        from modules.services.nopecha import NopeCaptchaService
-        temp_solver = NopeCaptchaService(bot, api_key, "")
-    elif service == 'anticaptcha':
-        from modules.services.anticaptcha import AntiCaptchaService
-        temp_solver = AntiCaptchaService(bot, api_key, "")
-    elif service == 'captchaly':
-        from modules.services.captchaly import CaptchalyService
-        temp_solver = CaptchalyService(bot, api_key, "")
-    else:
-        from modules.services.yescaptcha import YesCaptchaService
-        temp_solver = YesCaptchaService(bot, api_key, "")
 
     try:
+        from modules.services.browseruse import BrowserUseService
+        temp_solver = BrowserUseService(bot, api_key, "")
         future = asyncio.run_coroutine_threadsafe(temp_solver.get_balance(), bot.loop)
         balance = future.result(timeout=10)
         return jsonify({'balance': balance, 'service': service, 'enabled': cfg.get('enabled', False)})
@@ -793,7 +765,6 @@ def submit_captcha_solution():
     
     def patched_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
         if host == 'owobot.com':
-
             return [(socket.AF_INET, socket.SOCK_STREAM, 6, '', ('104.21.35.189', port))]
         return _original_getaddrinfo(host, port, family, type, proto, flags)
     
@@ -896,4 +867,4 @@ def register_captcha_challenge(account_id, challenge_data):
 def clear_captcha_challenge(account_id):
     if account_id in _pending_captchas:
         _pending_captchas.pop(account_id, None)
-        state.log_command("SEC", f"Captcha challenge cleared for account {account_id}", "info") 
+        state.log_command("SEC", f"Captcha challenge cleared for account {account_id}", "info")

@@ -7,10 +7,12 @@ plyer==2.1.0
 playsound3==3.3.0
 python-dotenv==1.2.1
 aiohttp-socks==0.10.1
-nopecha
 numpy
+playwright
 Pillow
 requests
 aiohttp
 colorama
 python-dateutil
+onnxruntime
+browser-use-sdk

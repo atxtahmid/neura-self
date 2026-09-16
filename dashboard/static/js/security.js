@@ -12,10 +12,13 @@
 */
 
 const CAPTCHA_SERVICES = {
-    yescaptcha:  { label: 'YesCaptcha',   keyField: 'yescaptcha_api_key',  balanceUnit: 'pts',    color: '#f59e0b', hint: 'Paid service – requires ≥ 30 pts to auto-solve.' },
-    nopecha:     { label: 'NopeCHA',      keyField: 'nopecha_api_key',     balanceUnit: 'credits',color: '#a855f7', hint: 'Free 100 credits daily – resets every day.' },
-    anticaptcha: { label: 'Anti-Captcha', keyField: 'anticaptcha_api_key', balanceUnit: '$',      color: '#22c55e', hint: 'Paid service – supports hCaptcha Enterprise too.' },
-    captchaly:   { label: 'Captchaly',    keyField: 'captchaly_api_key',   balanceUnit: '$',      color: '#3b82f6', hint: 'Paid service – strict 120s solve times.' },
+    browseruse: {
+        label: 'BrowserUse',
+        keyField: 'browseruse_api_key',
+        balanceUnit: 'hrs',
+        color: '#10b981',
+        hint: 'Cloud browser with built-in captcha solving. $15 free credit (~750 hours).'
+    },
 };
 
 let pendingCaptchas = {};
@@ -50,17 +53,37 @@ async function testSecurity(btn) {
 }
 
 async function fetchSecuritySummary() {
-    if (!document.getElementById('security').classList.contains('active-view')) return;
     const container = document.getElementById('security-accounts-grid');
     if (!container) return;
+
+    if (!accountsList || accountsList.length === 0) {
+        container.innerHTML = '<div class="no-data">No accounts connected yet. Waiting for bot to log in...</div>';
+        return;
+    }
+
     let html = '';
     for (const acc of accountsList) {
         try {
             const res = await fetch(`/api/stats?id=${acc.id}`);
             const d = await res.json();
-            if (!d || !d.security) continue;
+            if (!d || !d.security) {
+                html += `<div class="sec-account-card"><div class="sec-acc-header"><div class="sec-acc-info"><div class="sec-acc-text"><div class="sec-acc-name">${acc.username}</div><div class="sec-acc-id">User ID · ${acc.id}</div><div class="sec-acc-status">Loading stats...</div></div></div></div></div>`;
+                continue;
+            }
             const isActive = acc.id === currentAccountId;
             const statusColor = d.status === "PAUSED" ? "var(--danger)" : "var(--success)";
+
+            let captchaTimeHtml = '';
+            if (pendingCaptchas && pendingCaptchas[acc.id]) {
+                const p = pendingCaptchas[acc.id];
+                const elapsed = (Date.now() / 1000) - p.createdAt;
+                const remaining = Math.max(0, 600 - elapsed);
+                const mins = Math.floor(remaining / 60);
+                const secs = Math.floor(remaining % 60);
+                const urgency = remaining < 120 ? 'var(--danger)' : 'var(--warning)';
+                captchaTimeHtml = `<div style="color:${urgency}; font-family:var(--font-mono); font-size:0.85rem; margin-top:8px;">Captcha pending — ${mins}m ${secs}s left</div>`;
+            }
+
             html += `
                 <div class="sec-account-card ${d.status === "PAUSED" ? 'alert-active' : ''} ${isActive ? 'selected' : ''}">
                     <div class="sec-acc-header">
@@ -69,38 +92,42 @@ async function fetchSecuritySummary() {
                             <div class="sec-acc-text">
                                 <div class="sec-acc-name">${acc.username}</div>
                                 <div class="sec-acc-id">User ID · ${acc.id}</div>
-                                <div class="sec-acc-status" style="color:${statusColor}">${d.status}</div>
+                                <div class="sec-acc-status" style="color:${statusColor}">${d.status || 'UNKNOWN'}</div>
                             </div>
                         </div>
                     </div>
                     <div class="sec-acc-stats">
                         <div class="sec-mini-stat">
                             <span class="icon-svg" style="--icon: url('/static/assets/neura_icons/check-to-slot.svg'); background-color: var(--success);"></span>
-                            <div class="val">${d.security.captchas}</div>
+                            <div class="val">${d.security.captchas || 0}</div>
                             <div class="lbl">Solved</div>
                         </div>
                         <div class="sec-mini-stat">
                             <span class="icon-svg" style="--icon: url('/static/assets/neura_icons/user-slash.svg'); background-color: var(--danger);"></span>
-                            <div class="val">${d.security.bans}</div>
+                            <div class="val">${d.security.bans || 0}</div>
                             <div class="lbl">Bans</div>
                         </div>
                         <div class="sec-mini-stat">
                             <span class="icon-svg" style="--icon: url('/static/assets/neura_icons/warning.svg'); background-color: var(--warning);"></span>
-                            <div class="val">${d.security.warnings}</div>
+                            <div class="val">${d.security.warnings || 0}</div>
                             <div class="lbl">Warns</div>
                         </div>
                     </div>
+                    ${captchaTimeHtml}
                 </div>
             `;
-        } catch (e) {}
+        } catch (e) {
+            console.error(`Failed to fetch stats for ${acc.username}:`, e);
+            html += `<div class="sec-account-card"><div class="sec-acc-header"><div class="sec-acc-info"><div class="sec-acc-text"><div class="sec-acc-name">${acc.username}</div><div class="sec-acc-id">Error loading stats</div></div></div></div></div>`;
+        }
     }
-    container.innerHTML = html || '<div class="no-data">Initializing system details...</div>';
+    container.innerHTML = html;
 }
 
 function renderCaptchaSolverWidget(cfg, basePath, parentEnabled) {
     const enabled    = cfg.enabled !== false;
-    const service    = (cfg.service || 'yescaptcha').toLowerCase();
-    const svcInfo    = CAPTCHA_SERVICES[service] || CAPTCHA_SERVICES.yescaptcha;
+    const service    = (cfg.service || 'browseruse').toLowerCase();
+    const svcInfo    = CAPTCHA_SERVICES[service] || CAPTCHA_SERVICES.browseruse;
     const apiKey     = cfg[svcInfo.keyField] || '';
     const dis        = parentEnabled ? '' : ' disabled';
     const serviceOptions = Object.entries(CAPTCHA_SERVICES).map(([id, s]) => `
@@ -170,8 +197,8 @@ window.fetchCaptchaBalance = async function() {
     badge.className = 'csw-balance-badge loading';
     try {
         const q = currentAccountId ? `?id=${currentAccountId}` : '';
-        const selectedService = getDeep(currentConfig, 'security.captcha_solver.service'.split('.')) || 'yescaptcha';
-        const svcInfo = CAPTCHA_SERVICES[selectedService] || CAPTCHA_SERVICES.yescaptcha;
+        const selectedService = getDeep(currentConfig, 'security.captcha_solver.service'.split('.')) || 'browseruse';
+        const svcInfo = CAPTCHA_SERVICES[selectedService] || CAPTCHA_SERVICES.browseruse;
         const currentKey = getDeep(currentConfig, `security.captcha_solver.${svcInfo.keyField}`.split('.')) || '';
         const res = await fetch(`/api/captcha/balance${q}`, {
             method: 'POST',
@@ -356,6 +383,7 @@ function startPendingTimer() {
         if (Object.keys(pendingCaptchas).length > 0) {
             renderPendingDropdown();
             renderSecurityCards();
+            fetchSecuritySummary();
         }
     }, 1000);
 }

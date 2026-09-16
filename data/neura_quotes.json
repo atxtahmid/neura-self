@@ -1,124 +1,127 @@
 {
     "quotes": [
-        {
-            "id": 1,
-            "quote": "Your heart is the size of an ocean. Go find yourself in its hidden depths."
-        },
-        {
-            "id": 2,
-            "quote": "The Bay of Bengal is hit frequently by cyclones. The months of November and May, in particular, are dangerous in this regard."
-        },
-        {
-            "id": 3,
-            "quote": "Thinking is the capital, Enterprise is the way, Hard Work is the solution."
-        },
-        {
-            "id": 4,
-            "quote": "If You Can'T Make It Good, At Least Make It Look Good."
-        },
-        {
-            "id": 5,
-            "quote": "Heart be brave. If you cannot be brave, just go. Love's glory is not a small thing."
-        },
-        {
-            "id": 6,
-            "quote": "It is bad for a young man to sin; but it is worse for an old man to sin."
-        },
-        {
-            "id": 7,
-            "quote": "If You Are Out To Describe The Truth, Leave Elegance To The Tailor."
-        },
-        {
-            "id": 8,
-            "quote": "O man you are busy working for the world, and the world is busy trying to turn you out."
-        },
-        {
-            "id": 9,
-            "quote": "While children are struggling to be unique, the world around them is trying all means to make them look like everybody else."
-        },
-        {
-            "id": 10,
-            "quote": "These Capitalists Generally Act Harmoniously And In Concert, To Fleece The People."
-        },
-        {
-            "id": 11,
-            "quote": "I Don'T Believe In Failure. It Is Not Failure If You Enjoyed The Process."
-        },
-        {
-            "id": 12,
-            "quote": "Do not get elated at any victory, for all such victory is subject to the will of God."
-        },
-        {
-            "id": 13,
-            "quote": "Wear gratitude like a cloak and it will feed every corner of your life."
-        },
-        {
-            "id": 14,
-            "quote": "If you even dream of beating me you'd better wake up and apologize."
-        },
-        {
-            "id": 15,
-            "quote": "I Will Praise Any Man That Will Praise Me."
-        },
-        {
-            "id": 16,
-            "quote": "One Of The Greatest Diseases Is To Be Nobody To Anybody."
-        },
-        {
-            "id": 17,
-            "quote": "I'm so fast that last night I turned off the light switch in my hotel room and was in bed before the room was dark."
-        },
-        {
-            "id": 18,
-            "quote": "People Must Learn To Hate And If They Can Learn To Hate, They Can Be Taught To Love."
-        },
-        {
-            "id": 19,
-            "quote": "Everyone has been made for some particular work, and the desire for that work has been put in every heart."
-        },
-        {
-            "id": 20,
-            "quote": "The less of the World, the freer you live."
-        },
-        {
-            "id": 21,
-            "quote": "Respond to every call that excites your spirit."
-        },
-        {
-            "id": 22,
-            "quote": "The Way To Get Started Is To Quit Talking And Begin Doing."
-        },
-        {
-            "id": 23,
-            "quote": "God Doesn'T Require Us To Succeed, He Only Requires That You Try."
-        },
-        {
-            "id": 24,
-            "quote": "Speak any language, Turkish, Greek, Persian, Arabic, but always speak with love."
-        },
-        {
-            "id": 25,
-            "quote": "Happiness comes towards those which believe in him."
-        },
-        {
-            "id": 26,
-            "quote": "Knowledge is of two kinds: that which is absorbed and that which is heard. And that which is heard does not profit if it is not absorbed."
-        },
-        {
-            "id": 27,
-            "quote": "When I am silent, I have thunder hidden inside."
-        },
-        {
-            "id": 28,
-            "quote": "Technological Progress Is Like An Axe In The Hands Of A Pathological Criminal."
-        },
-        {
-            "id": 29,
-            "quote": "No One Would Choose A Friendless Existence On Condition Of Having All The Other Things In The World."
-        },
-        {
-            "id": 30,
-            "quote": "Life is a gamble. You can get hurt, but people die in plane crashes, lose their arms and legs in car accidents; people die every day. Same with fighters: some die, some get hurt, some go on. You just don't let yourself believe it will happen to you."
-        }
+        { "id": 1, "quote": "Your heart is the size of an ocean. Go find yourself in its hidden depths." },
+        { "id": 2, "quote": "anyone else bored rn" },
+        { "id": 3, "quote": "just woke up, what did i miss" },
+        { "id": 4, "quote": "The Bay of Bengal is hit frequently by cyclones. The months of November and May, in particular, are dangerous in this regard." },
+        { "id": 5, "quote": "this song is stuck in my head" },
+        { "id": 6, "quote": "Thinking is the capital, Enterprise is the way, Hard Work is the solution." },
+        { "id": 7, "quote": "i should probably sleep but here i am" },
+        { "id": 8, "quote": "If You Can'T Make It Good, At Least Make It Look Good." },
+        { "id": 9, "quote": "today was such a long day" },
+        { "id": 10, "quote": "anyone wanna chat" },
+        { "id": 11, "quote": "Heart be brave. If you cannot be brave, just go. Love's glory is not a small thing." },
+        { "id": 12, "quote": "i'm so hungry right now" },
+        { "id": 13, "quote": "It is bad for a young man to sin; but it is worse for an old man to sin." },
+        { "id": 14, "quote": "why is it so quiet in here" },
+        { "id": 15, "quote": "If You Are Out To Describe The Truth, Leave Elegance To The Tailor." },
+        { "id": 16, "quote": "just finished my homework finally" },
+        { "id": 17, "quote": "okay that was actually funny" },
+        { "id": 18, "quote": "O man you are busy working for the world, and the world is busy trying to turn you out." },
+        { "id": 19, "quote": "i cant stop laughing at that" },
+        { "id": 20, "quote": "While children are struggling to be unique, the world around them is trying all means to make them look like everybody else." },
+        { "id": 21, "quote": "whats everyone up to" },
+        { "id": 22, "quote": "These Capitalists Generally Act Harmoniously And In Concert, To Fleece The People." },
+        { "id": 23, "quote": "lol i forgot what i was gonna say" },
+        { "id": 24, "quote": "I Don'T Believe In Failure. It Is Not Failure If You Enjoyed The Process." },
+        { "id": 25, "quote": "i think i need more coffee" },
+        { "id": 26, "quote": "this weather is so weird today" },
+        { "id": 27, "quote": "Do not get elated at any victory, for all such victory is subject to the will of God." },
+        { "id": 28, "quote": "just got back from work, so tired" },
+        { "id": 29, "quote": "Wear gratitude like a cloak and it will feed every corner of your life." },
+        { "id": 30, "quote": "anyone playing anything rn" },
+        { "id": 31, "quote": "If you even dream of beating me you'd better wake up and apologize." },
+        { "id": 32, "quote": "i love this server ngl" },
+        { "id": 33, "quote": "oh shoot i forgot to eat lunch" },
+        { "id": 34, "quote": "I Will Praise Any Man That Will Praise Me." },
+        { "id": 35, "quote": "why does time go so fast" },
+        { "id": 36, "quote": "One Of The Greatest Diseases Is To Be Nobody To Anybody." },
+        { "id": 37, "quote": "i'm gonna go take a shower brb" },
+        { "id": 38, "quote": "I'm so fast that last night I turned off the light switch in my hotel room and was in bed before the room was dark." },
+        { "id": 39, "quote": "back, what did i miss" },
+        { "id": 40, "quote": "People Must Learn To Hate And If They Can Learn To Hate, They Can Be Taught To Love." },
+        { "id": 41, "quote": "i keep refreshing the page for no reason" },
+        { "id": 42, "quote": "is it just me or is today dragging" },
+        { "id": 43, "quote": "Everyone has been made for some particular work, and the desire for that work has been put in every heart." },
+        { "id": 44, "quote": "i really need a vacation" },
+        { "id": 45, "quote": "The less of the World, the freer you live." },
+        { "id": 46, "quote": "does anyone else talk to themselves" },
+        { "id": 47, "quote": "Respond to every call that excites your spirit." },
+        { "id": 48, "quote": "i just spent way too long on that" },
+        { "id": 49, "quote": "welp time to do nothing again" },
+        { "id": 50, "quote": "The Way To Get Started Is To Quit Talking And Begin Doing." },
+        { "id": 51, "quote": "i think my brain stopped working" },
+        { "id": 52, "quote": "God Doesn'T Require Us To Succeed, He Only Requires That You Try." },
+        { "id": 53, "quote": "okay who wants to play something" },
+        { "id": 54, "quote": "Speak any language, Turkish, Greek, Persian, Arabic, but always speak with love." },
+        { "id": 55, "quote": "i cant believe its already this late" },
+        { "id": 56, "quote": "random thought but cats are amazing" },
+        { "id": 57, "quote": "Happiness comes towards those which believe in him." },
+        { "id": 58, "quote": "i wonder what everyone else is doing" },
+        { "id": 59, "quote": "Knowledge is of two kinds: that which is absorbed and that which is heard. And that which is heard does not profit if it is not absorbed." },
+        { "id": 60, "quote": "just gonna chill here for a bit" },
+        { "id": 61, "quote": "When I am silent, I have thunder hidden inside." },
+        { "id": 62, "quote": "my playlist is all over the place lol" },
+        { "id": 63, "quote": "someone say something interesting" },
+        { "id": 64, "quote": "Technological Progress Is Like An Axe In The Hands Of A Pathological Criminal." },
+        { "id": 65, "quote": "i need new music recommendations" },
+        { "id": 66, "quote": "No One Would Choose A Friendless Existence On Condition Of Having All The Other Things In The World." },
+        { "id": 67, "quote": "why is food so expensive now" },
+        { "id": 68, "quote": "Life is a gamble. You can get hurt, but people die in plane crashes, lose their arms and legs in car accidents; people die every day. Same with fighters: some die, some get hurt, some go on. You just don't let yourself believe it will happen to you." },
+        { "id": 69, "quote": "just finished a really good show" },
+        { "id": 70, "quote": "no spoilers but that ending was crazy" },
+        { "id": 71, "quote": "i should really clean my room" },
+        { "id": 72, "quote": "procrastinating again like always" },
+        { "id": 73, "quote": "ok this is my last message for tonight" },
+        { "id": 74, "quote": "i said that last time too lol" },
+        { "id": 75, "quote": "anyone know a good movie to watch" },
+        { "id": 76, "quote": "i cant focus on anything today" },
+        { "id": 77, "quote": "just gonna lurk for a bit" },
+        { "id": 78, "quote": "this chat is always so chill" },
+        { "id": 79, "quote": "i love how random this server is" },
+        { "id": 80, "quote": "okay back to being productive i guess" },
+        { "id": 81, "quote": "nah i'm kidding i'm not productive" },
+        { "id": 82, "quote": "why do i always type so slow" },
+        { "id": 83, "quote": "alright whats the vibe today" },
+        { "id": 84, "quote": "i havent been here in a while" },
+        { "id": 85, "quote": "glad to be back honestly" },
+        { "id": 86, "quote": "missed talking to you guys" },
+        { "id": 87, "quote": "ok that was kinda wholesome" },
+        { "id": 88, "quote": "i think i'm addicted to this game" },
+        { "id": 89, "quote": "just one more round i promise" },
+        { "id": 90, "quote": "famous last words lol" },
+        { "id": 91, "quote": "my sleep schedule is a mess" },
+        { "id": 92, "quote": "does anyone even sleep anymore" },
+        { "id": 93, "quote": "i should really drink more water" },
+        { "id": 94, "quote": "okay random question time" },
+        { "id": 95, "quote": "whats your favorite food" },
+        { "id": 96, "quote": "pineapple on pizza yes or no" },
+        { "id": 97, "quote": "i'm ready for the debate lol" },
+        { "id": 98, "quote": "honestly both sides have a point" },
+        { "id": 99, "quote": "okay new topic, this is getting heated" },
+        { "id": 100, "quote": "i love how we can just talk about anything" },
+        { "id": 101, "quote": "this is why i love this server" },
+        { "id": 102, "quote": "okay i'm gonna go eat now" },
+        { "id": 103, "quote": "back, food was great" },
+        { "id": 104, "quote": "what did you all have for dinner" },
+        { "id": 105, "quote": "i had leftovers, still good tho" },
+        { "id": 106, "quote": "cooking is so much effort sometimes" },
+        { "id": 107, "quote": "i wish i could just eat and not cook" },
+        { "id": 108, "quote": "same honestly" },
+        { "id": 109, "quote": "okay this convo got real fast" },
+        { "id": 110, "quote": "i'm just here for the vibes" },
+        { "id": 111, "quote": "always have been" },
+        { "id": 112, "quote": "this server is my comfort zone" },
+        { "id": 113, "quote": "okay cheesy moment over lol" },
+        { "id": 114, "quote": "anyway, whats new with everyone" },
+        { "id": 115, "quote": "not much tbh just chilling" },
+        { "id": 116, "quote": "same here, nothing exciting" },
+        { "id": 117, "quote": "sometimes boring is nice" },
+        { "id": 118, "quote": "100 percent agree" },
+        { "id": 119, "quote": "alright i'm off to bed, goodnight all" },
+        { "id": 120, "quote": "sleep well everyone" },
+        { "id": 121, "quote": "i'll be back tomorrow probably" },
+        { "id": 122, "quote": "okay goodnight, dont stay up too late" },
+        { "id": 123, "quote": "see you all later" }
     ]
-}
+        }

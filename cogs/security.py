@@ -133,7 +133,7 @@ class Security(commands.Cog):
                 "color": 0xFF3B3B,
                 "author": {
                     "name": f"NeuraSelf Security - {self.bot.username}",
-                    "icon_url": "https://media.discordapp.net/attachments/1357951011456684252/1524069544401047773/neuralogo.png?ex=6a4e67df&is=6a4d165f&hm=21deba052462f712808661dc8aac4204eecb781cfcaa1ff189861b79c7db0c92"
+                    "icon_url": "https://media.discordapp.net/attachments/1357951011456684252/1524069544401047773/neuralogo.png?ex=6a4e67df&is=6a4d165f&hm=21deba052462f712808661dc8aac4204eecb781cfcaa1"
                 },
                 "footer": {"text": f"NeuraSelf • Account: {self.bot.username}"},
                 "timestamp": time.strftime('%Y-%m-%dT%H:%M:%S')
@@ -175,6 +175,12 @@ class Security(commands.Cog):
                 if "owobot.com/captcha" in url:
                     return url
         return None
+
+    def _has_solver_key(self, sol_cfg):
+        return bool(
+            sol_cfg.get("browseruse_api_key") or
+            os.getenv("BROWSER_USE_API_KEY")
+        )
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -258,12 +264,7 @@ class Security(commands.Cog):
                 self.bot._solving_captcha = True
 
                 autosolved = False
-                has_key = bool(
-                    sol_cfg.get("yescaptcha_api_key") or
-                    sol_cfg.get("nopecha_api_key") or
-                    sol_cfg.get("anticaptcha_api_key") or
-                    sol_cfg.get("captchaly_api_key")
-                )
+                has_key = self._has_solver_key(sol_cfg)
                 if sol_cfg.get("enabled", True) and has_key:
                     service_name = self.bot.web_solver.active_service_name.capitalize()
                     self.bot.log("SYS", f"Attempting {service_name} auto-solve for DM...")
@@ -375,12 +376,7 @@ class Security(commands.Cog):
                     self.bot._solving_captcha = True
 
                     autosolved = False
-                    has_key = bool(
-                        sol_cfg.get("yescaptcha_api_key") or
-                        sol_cfg.get("nopecha_api_key") or
-                        sol_cfg.get("anticaptcha_api_key") or
-                        sol_cfg.get("captchaly_api_key")
-                    )
+                    has_key = self._has_solver_key(sol_cfg)
                     if sol_cfg.get("enabled", True) and has_key:
                         service_name = self.bot.web_solver.active_service_name.capitalize()
                         self.bot.log("SYS", f"Attempting {service_name} auto-solve...")
@@ -471,12 +467,7 @@ class Security(commands.Cog):
             self.bot._solving_captcha = True
 
             autosolved = False
-            has_key = bool(
-                sol_cfg.get("yescaptcha_api_key") or
-                sol_cfg.get("nopecha_api_key") or
-                sol_cfg.get("anticaptcha_api_key") or
-                sol_cfg.get("captchaly_api_key")
-            )
+            has_key = self._has_solver_key(sol_cfg)
             if sol_cfg.get("enabled", True) and has_key:
                 service_name = self.bot.web_solver.active_service_name.capitalize()
                 self.bot.log("SYS", f"Attempting {service_name} auto-solve...")
