@@ -29,7 +29,7 @@ class BrowserUseService:
                 },
                 json={"proxyCountryCode": "us"},
             ) as resp:
-                if resp.status != 200:
+                if resp.status not in (200, 201):
                     err = await resp.text()
                     self.bot.log("ERROR", "BrowserUse: Failed to create browser: " + str(resp.status) + " - " + err)
                     return None, None
